@@ -109,7 +109,12 @@ async function init() {
     
     // Physique
     physics = await RapierPhysics();
+    console.log('RapierPhysics initialized:', physics);
+    console.log('Physics keys:', Object.keys(physics).slice(0, 20));
+    
     physics.addScene(scene);
+    console.log('Physics world after addScene:', physics.world ? 'EXISTS' : 'UNDEFINED');
+    console.log('Physics object after addScene:', physics);
     
     // Initialisation de l'environnement
     initEnvironment(scene, physics, raycaster, mouse, camera);
