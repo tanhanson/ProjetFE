@@ -187,12 +187,16 @@ function loadBall() {
 
         setTimeout(() => {
             console.log('Tous les bodies dans Rapier:');
-            physics.world.bodies.forEach(body => {
-                const t = body.translation();
-                console.log(`Body - pos: ${t.x.toFixed(1)}, ${t.y.toFixed(1)}, ${t.z.toFixed(1)} - type: ${body.bodyType()}`);
-                const dist = Math.abs(t.x - collider.position.x) + Math.abs(t.z - collider.position.z);
-                if (dist < 1) bowlingBall = { model, collider, rigidBody: body };
-            });
+            if (physics && physics.world && physics.world.bodies) {
+                physics.world.bodies.forEach(body => {
+                    const t = body.translation();
+                    console.log(`Body - pos: ${t.x.toFixed(1)}, ${t.y.toFixed(1)}, ${t.z.toFixed(1)} - type: ${body.bodyType()}`);
+                    const dist = Math.abs(t.x - collider.position.x) + Math.abs(t.z - collider.position.z);
+                    if (dist < 1) bowlingBall = { model, collider, rigidBody: body };
+                });
+            } else {
+                console.warn('Physics world not yet initialized for bowling ball');
+            }
         }, 500);
     });
 }
@@ -240,11 +244,15 @@ function loadQuilles() {
             if (physics && physics.addMesh) physics.addMesh(collider, 1, 0.4);
 
             setTimeout(() => {
-                physics.world.bodies.forEach(body => {
-                    const t = body.translation();
-                    const dist = Math.abs(t.x - collider.position.x) + Math.abs(t.z - collider.position.z);
-                    if (dist < 1) bowlingObjects.push({ model, collider, rigidBody: body });
-                });
+                if (physics && physics.world && physics.world.bodies) {
+                    physics.world.bodies.forEach(body => {
+                        const t = body.translation();
+                        const dist = Math.abs(t.x - collider.position.x) + Math.abs(t.z - collider.position.z);
+                        if (dist < 1) bowlingObjects.push({ model, collider, rigidBody: body });
+                    });
+                } else {
+                    console.warn('Physics world not yet initialized for bowling pins');
+                }
             }, 500);
         });
     });
