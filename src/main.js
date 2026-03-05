@@ -7,7 +7,7 @@ import { initEnvironment, updateHoverCursor, setupClickHandlers, hideInstruction
 
 import { createBowlingGame, updateBowling,  } from './bowling.js';
 import { loadTreeTemplate, spawnForest } from './forest.js';
-
+import RAPIER from '@dimforge/rapier3d-compat';
 
 // Variables globales
 let camera, scene, renderer, stats, controls, physics;
