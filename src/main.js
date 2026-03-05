@@ -109,12 +109,7 @@ async function init() {
     
     // Physique
     physics = await RapierPhysics();
-    console.log('RapierPhysics initialized:', physics);
-    console.log('Physics keys:', Object.keys(physics).slice(0, 20));
-    
     physics.addScene(scene);
-    console.log('Physics world after addScene:', physics.world ? 'EXISTS' : 'UNDEFINED');
-    console.log('Physics object after addScene:', physics);
     
     // Initialisation de l'environnement
     initEnvironment(scene, physics, raycaster, mouse, camera);
@@ -162,17 +157,6 @@ async function init() {
             toggleCarCameraMode();
         }
     });
-
-    // Création du jeu de bowling - avec délai pour s'assurer que le monde physique est prêt
-    setTimeout(() => {
-        if (physics && physics.world) {
-            console.log('Physics world ready, creating bowling game');
-            createBowlingGame(scene, physics);
-        } else {
-            console.error('Bowling game not created - physics world still not initialized after delay');
-            console.log('Physics state:', { physics: !!physics, world: physics ? !!physics.world : 'N/A' });
-        }
-    }, 1000);
 
     // Lancement de la boucle d'animation
     animate();
