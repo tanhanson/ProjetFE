@@ -161,11 +161,13 @@ async function init() {
     // Création du jeu de bowling - avec délai pour s'assurer que le monde physique est prêt
     setTimeout(() => {
         if (physics && physics.world) {
+            console.log('Physics world ready, creating bowling game');
             createBowlingGame(scene, physics);
         } else {
             console.error('Bowling game not created - physics world still not initialized after delay');
+            console.log('Physics state:', { physics: !!physics, world: physics ? !!physics.world : 'N/A' });
         }
-    }, 100);
+    }, 1000);
 
     // Lancement de la boucle d'animation
     animate();

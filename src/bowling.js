@@ -22,11 +22,18 @@ export function createBowlingGame(sceneRef, physicsRef) {
     scene = sceneRef;
     physics = physicsRef;
     
-    if (!physics || !physics.world) {
-        console.error('Cannot create bowling game - physics world not initialized');
+    if (!physics) {
+        console.error('Cannot create bowling game - physics is undefined');
         return;
     }
     
+    if (!physics.world) {
+        console.error('Cannot create bowling game - physics.world is undefined');
+        console.log('Physics object keys:', Object.keys(physics));
+        return;
+    }
+    
+    console.log('Initializing bowling game with physics world');
     createBowlingLane();
     loadQuilles();
     loadBall();
