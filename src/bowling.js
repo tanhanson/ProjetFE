@@ -21,6 +21,12 @@ const SCALE = 3;
 export function createBowlingGame(sceneRef, physicsRef) {
     scene = sceneRef;
     physics = physicsRef;
+    
+    if (!physics || !physics.world) {
+        console.error('Cannot create bowling game - physics world not initialized');
+        return;
+    }
+    
     createBowlingLane();
     loadQuilles();
     loadBall();

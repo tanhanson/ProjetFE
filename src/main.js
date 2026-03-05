@@ -158,8 +158,12 @@ async function init() {
         }
     });
 
-    // Création du jeu de bowling
-    createBowlingGame(scene, physics);
+    // Création du jeu de bowling - uniquement si la physique est prête
+    if (physics && physics.world) {
+        createBowlingGame(scene, physics);
+    } else {
+        console.error('Bowling game not created - physics world not initialized');
+    }
 
     // Lancement de la boucle d'animation
     animate();
