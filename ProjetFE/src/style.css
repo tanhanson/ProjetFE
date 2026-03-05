@@ -1,0 +1,832 @@
+/* ============================================================
+   STYLES GLOBAUX
+   ============================================================ */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  font-family: "SN Pro",  sans-serif;
+  font-weight: 400;
+}
+
+.reveal,
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal p,
+.reveal span,
+.reveal div {
+  font-family: "SN Pro", sans-serif !important;
+}
+
+
+/* ============================================================
+   INFO BAR (lien Three.js / Rapier)
+   ============================================================ */
+
+#info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  font-family: "SN Pro",  sans-serif;
+  font-weight: 400;
+}
+
+#info a {
+  color: #003A79;
+  pointer-events: auto;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+#info a:hover {
+  opacity: 0.8;
+}
+
+
+/* ============================================================
+   POPUPS — BASE
+   ============================================================ */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: white;
+  padding: 60px;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 55%;
+  max-width: 900px;
+  height: auto;
+  min-height: 60%;
+  max-height: 80vh;
+  text-align: center;
+  font-family: "SN Pro",  sans-serif;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popup-content h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 48px;
+  font-family: "SN Pro",  sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.popup-content h3 {
+  font-size: 28px;
+  margin: 30px 0 20px 0;
+  font-family: "SN Pro",  sans-serif;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.3px;
+}
+
+.instructions-list {
+  text-align: left;
+  margin: 20px 0 30px 0;
+  line-height: 1.5;
+  font-family: "SN Pro",  sans-serif;
+  font-size: 20px;
+  flex: 1;
+}
+
+.instructions-list p {
+  margin: 12px 0;
+  font-family: "SN Pro",  sans-serif;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+  letter-spacing: 0.2px;
+}
+
+.instructions-list strong {
+  font-weight: 600;
+  color: white;
+  background: rgba(0, 58, 121, 0.2);
+  padding: 2px 8px;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.instructions-list h3 {
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.instructions-list h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #003A79;
+  border-radius: 2px;
+}
+
+.close-btn {
+  background: #003A79;
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: "SN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 20px;
+  align-self: center;
+  width: fit-content;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 58, 121, 0.3);
+}
+
+.close-btn:hover {
+  background: #004c99;
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 58, 121, 0.4);
+}
+
+.close-btn:active {
+  transform: scale(0.98);
+}
+
+/* Scrollbar style Apple */
+.popup-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popup-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+
+.popup-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* ============================================================
+   POPUP — TABLEAU DE PROJET
+   ============================================================ */
+
+.tableau-content {
+  background: rgba(20, 20, 30, 0.95);
+  max-width: 800px;
+}
+
+.tableau-content h2 {
+  font-size: 42px;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #fff 0%, #aaccff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tableau-description {
+  margin: 30px 0;
+  line-height: 1.8;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tableau-description p {
+  margin: 15px 0;
+}
+
+.tableau-link-container {
+  margin: 30px 0 20px;
+  text-align: center;
+}
+
+.tableau-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #003A79 0%, #0055aa 100%);
+  color: white;
+  text-decoration: none;
+  padding: 15px 40px;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 58, 121, 0.4);
+}
+
+.tableau-link:hover {
+  background: linear-gradient(135deg, #004c99 0%, #0066cc 100%);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 58, 121, 0.5);
+}
+
+.tableau-link:active {
+  transform: scale(0.98);
+}
+
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ============================================================
+   PRÉSENTATION — CONTENEUR REVEAL.JS
+   ============================================================ */
+
+#presentation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #000;
+  overflow: hidden;
+  font-family: "SN Pro",  sans-serif;
+}
+
+#presentation .reveal,
+#presentation .reveal .slides {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.centre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.canvas-id {
+  width: 600px;
+  height: 400px;
+  justify-content: center;
+}
+
+
+/* ============================================================
+   SLIDE INTRO
+   ============================================================ */
+
+.intro-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#intro-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.intro-overlay {
+  position: absolute;
+  top: 0;
+  left: 20;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 400px;
+  z-index: 10;
+  background: linear-gradient(to right, rgba(0,0,0,0.75) 40%, transparent 100%);
+}
+
+.intro-tag {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #4a9eff;
+  margin-bottom: 20px;
+}
+
+.intro-title {
+  font-size: 60px !important;
+  font-weight: 700;
+  color: white;
+  line-height: 1.0;
+  letter-spacing: -2px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+
+.intro-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+
+/* ============================================================
+   SLIDES — Style commun de la présentation 
+   ============================================================ */
+
+.s-layout {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 300px;
+  align-items: stretch;
+  height: 100vh;
+  width: 100%;
+}
+
+.s-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px;
+  min-width: 120px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.s-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+  text-align: left;
+}
+
+.s-number {
+  font-size: 80px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.87);
+  letter-spacing: -4px;
+  margin: 0;
+  line-height: 1;
+}
+
+.s-line {
+  flex: 1;
+  width: 1px;
+  background: linear-gradient(to bottom, #003A79, transparent);
+  margin-top: 20px;
+}
+
+.s-label {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #4a9eff;
+  margin: 0 0 20px 0;
+}
+
+.s-title {
+  font-size: 60px !important;
+  font-weight: 600 !important;
+  color: white !important;
+  line-height: 1.0 !important;
+  letter-spacing: -3px !important;
+  margin: 0 0 30px 0 !important;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+.s-body {
+  font-size: 18px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 0 40px 0;
+}
+
+.s-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.s-tag {
+  background: transparent;
+  border: 1px solid rgba(0, 58, 121, 0.7);
+  color: rgba(255,255,255,0.7);
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.s-message {
+  font-size: 17px;
+  color: rgba(255,255,255,0.85);
+  font-style: italic;
+  border-left: 2px solid #003A79;
+  padding-left: 20px;
+  line-height: 1.6;
+  max-width: 550px;
+  position: relative;
+}
+
+.s-quote {
+  font-size: 40px;
+  color: #003A79;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 0;
+  vertical-align: -12px;
+  margin-right: 4px;
+}
+
+
+/* ============================================================
+   SECTION 2 — Survol du projet
+   ============================================================ */
+
+.s2-layout {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 300px;
+  align-items: stretch;
+  height: 100vh;
+  width: 100%;
+}
+
+.s2-left {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  padding-right: 60px;
+}
+
+.s2-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+  text-align: left;
+  max-width: 700px;
+  gap: 24px;
+}
+
+.s2-title {
+  font-size: 48px !important;
+  font-weight: 800 !important;
+  color: white !important;
+  line-height: 1.0 !important;
+  letter-spacing: -2px !important;
+  margin: 0 0 20px 0 !important;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  white-space: nowrap;
+}
+
+.s2-body {
+  font-size: 17px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.s2-inspiration {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+  margin: 0 0 24px 0;
+}
+
+.s2-highlight {
+  color: #4a9eff;
+  font-weight: 600;
+}
+
+.s2-divider {
+  width: 40px;
+  height: 2px;
+  background: #003A79;
+  border-radius: 2px;
+}
+
+.s2-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.s2-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.s2-stat-number {
+  font-size: 36px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.s2-stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   SECTION 4 — Problèmes & solutions
+   ============================================================ */
+
+.s4-problems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.s4-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 14px 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+}
+
+.s4-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #003A79;
+  letter-spacing: 2px;
+  margin-top: 2px;
+  min-width: 24px;
+}
+
+.s4-problem {
+  font-size: 22px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  margin: 0 0 4px 0;
+}
+
+.s4-solution {
+  font-size: 18px;
+  color: #4a9eff;
+  margin: 0;
+  font-style: italic;
+}
+
+
+/* ============================================================
+   SECTION 5 — Extraits de code
+   ============================================================ */
+
+.s5-layout {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 50px;
+  align-items: stretch;
+  height: 100vh;
+  width: 100%;
+}
+
+.s5-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px;
+  min-width: 120px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.s5-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+  text-align: left;
+}
+
+#s5-label {
+  padding-top: 200px;
+}
+
+.s-code-layout {
+  padding-top: 40px;
+}
+
+.s-code-split {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+
+.s-code-img {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.s-code-img img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.s5-code-img {
+  padding-bottom: 60px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 500px;
+  height: 700px;
+}
+
+.s-code-turntable {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.canvas-turntable {
+  width: 800px !important;
+  height: 400px !important;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #0a0a0a;
+}
+
+.s-code-caption {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-align: center;
+}
+
+
+/* ============================================================
+   SECTION 6 — Conception visuelle & low poly
+   ============================================================ */
+
+.s6-reasons {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.s6-reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 20px;
+  color: rgba(255,255,255,0.6);
+}
+
+.s6-icon {
+  font-size: 20px;
+  min-width: 30px;
+  margin-top: 2px;
+}
+
+.s6-reason strong {
+  color: white;
+}
+
+.s6-tag {
+  background: transparent;
+  border: 1px solid rgba(0, 58, 121, 0.7);
+  color: rgba(255,255,255,0.7);
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+
+/* ============================================================
+   SECTION 7 — Réflexion personnelle
+   ============================================================ */
+
+.s7-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.s7-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #4a9eff;
+  margin: 0 0 8px 0;
+}
+
+
+/* ============================================================
+   SLIDE FINALE — Bouton entrer dans le portfolio
+   ============================================================ */
+
+#enter-portfolio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

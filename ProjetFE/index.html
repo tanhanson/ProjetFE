@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="" />
+    <link rel="stylesheet" href="src/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css">
+    <title>Portfolio 3D </title>
+  </head>
+ <body>
+
+  <!-- PRESENTATION -->
+  <div id="presentation">
+    <div class="reveal">
+      <div class="slides">
+        <section class="intro-slide">
+  <canvas id="intro-canvas"></canvas>
+  <div class="intro-overlay">
+    <p class="intro-tag">Projet fin d'études — TIM</p>
+    <h1 class="intro-title">Création d'un </h1>
+    <h1 class = "intro-title">portfolio 3D immersif</h1>
+    <p class="intro-sub">Three.js · Rapier Physics · WebGL</p>
+  </div>
+</section>
+       <section>
+  <div class="s-layout">
+    <div class="s-left">
+      <p class="s-number">01</p>
+      <div class="s-line"></div>
+    </div>
+    <div class="s-right">
+      <p class="s-label">Objectif initial de la recherche</p>
+      <h1 class="s-title">Pourquoi ce<br>projet?</h1>
+      <p class="s-body">Explorer la création d'un portfolio interactif en 3D temps réel — aller bien au-delà d'un simple site web statique.</p>
+      <div class="s-tags">
+        <span class="s-tag">Three.js</span>
+        <span class="s-tag">Rapier Physics</span>
+        <span class="s-tag">WebGL</span>
+        <span class="s-tag">Collisions</span>
+        <span class="s-tag">Lumière 3D</span>
+      </div>
+      <div class="s-message">
+        <span class="s-quote">"</span>
+        Transformer un portfolio traditionnel en expérience interactive jouable.
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="s2-layout">
+    <div class="s-left">
+      <p class="s-number">02</p>
+      <div class="s-line"></div>
+    </div>
+    <div class="s2-right">
+      <p class="s-label">Survol du projet</p>
+      <h1 class="s-title">Un portfolio<br>comme<br>expérience</h1>
+      <p class="s-body">
+        J'ai créé ce site pour présenter mon parcours scolaire et mes projets de manière dynamique — offrir une expérience différente pour que mes recruteurs soient activement engagés.
+      </p>
+      <p class="s-body">
+        Inspiré de Bruno Simon, mon site est un monde ouvert où l'utilisateur explore mes projets dans un environnement 3D interactif.
+        L'utilisateur peut naviguer le monde a l'aide d'une voiture
+      </p>
+      <div class="s2-stats">
+        <div class="s2-stat">
+          <span class="s2-stat-number">3D</span>
+          <span class="s2-stat-label">Temps réel</span>
+        </div>
+        <div class="s2-stat">
+          <span class="s2-stat-number">4</span>
+          <span class="s2-stat-label">Projets présentés</span>
+        </div>
+        <div class="s2-stat">
+          <span class="s2-stat-number">∞</span>
+          <span class="s2-stat-label">Exploration libre</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="s-layout">
+    <div class="s-left">
+      <p class="s-number">03</p>
+      <div class="s-line"></div>
+    </div>
+    <div class="s-right">
+      <p class="s-label">Objectif atteint?</p>
+      <h1 class="s-title">En général,<br>oui.</h1>
+      <p class="s-body">J'ai réussi à créer un portfolio interactif fonctionnel avec un vrai système de physique, une caméra dynamique et un monde explorable.</p>
+      <div class="s-tags">
+        <span class="s-tag">✓ Physique 3D</span>
+        <span class="s-tag">✓ Caméra dynamique</span>
+        <span class="s-tag">✓ Monde interactif</span>
+        <span class="s-tag">✓ Portfolio accessible</span>
+      </div>
+      <div class="s-message">
+        <span class="s-quote">"</span>
+        Quelques limitations d'optimisation et de mécanique — mais le projet est fonctionnel et vivant.
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- SECTION 4 - Problèmes rencontrés -->
+<section>
+  <div class="s-layout">
+    <div class="s-left">
+      <p class="s-number">04</p>
+      <div class="s-line"></div>
+    </div>
+    <div class="s-right">
+      <p class="s-label">Problèmes rencontrés & solutions</p>
+      <h1 class="s-title">Obstacles<br>& compromis</h1>
+      <div class="s4-problems">
+        <div class="s4-item">
+          <span class="s4-num">01</span>
+          <div>
+            <p class="s4-problem">La voiture traversait la plateforme</p>
+            <p class="s4-solution">→ Ajustement des colliders et de la masse physique</p>
+          </div>
+        </div>
+        <div class="s4-item">
+          <span class="s4-num">02</span>
+          <div>
+            <p class="s4-problem">Colliders incorrects sur les modèles </p>
+            <p class="s4-solution">→ Compromis avec des solutions temporaires</p>
+          </div>
+        </div>
+        <div class="s4-item">
+          <span class="s4-num">03</span>
+          <div>
+            <p class="s4-problem">Comportement inattendu des lumières</p>
+            <p class="s4-solution">→ Tutoriels et ajustements des paramètres Three.js</p>
+          </div>
+        </div>
+        <div class="s4-item">
+          <span class="s4-num">04</span>
+          <div>
+            <p class="s4-problem">Modèles FBX altéraient l'apparence des objets</p>
+            <p class="s4-solution">→ Migration vers GLTF + compromis sur le collider de l'école</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+        
+<!-- SECTION 5a - Roues & Quaternions -->
+<section>
+  <div class="s5-layout">
+    <div class="s-left">
+      <p class="s-number">05</p>
+      <div class="s-line"></div>
+    </div>
+    <div class="s-right">
+      <p class="s-label">Extrait de code dont je suis fier — 1/2</p>
+      <h1 class="s-title">Roues &<br>quaternions</h1>
+      <div class="s-code-split">
+        <div class="s-code-img">
+          <img src="images/roues.jpg" alt="Code addWheel" />
+          <p class="s-code-caption">Création de chaque roue avec suspension et friction</p>
+        </div>
+        <div class="s-code-img">
+          <img src="images/rotationRoues.jpg" alt="Code updateWheels" />
+          <p class="s-code-caption">Deux quaternions combinés pour rotation + direction simultanées</p>
+        </div>
+      </div>
+      <div class="s-message" style="margin-top: 20px;">
+        <span class="s-quote">"</span>
+        Chaque roue tourne sur elle-même ET suit la direction du volant en même temps — sans Gimbal Lock.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5b - Accélération + Turntable -->
+<section>
+  <div class="s5-layout">
+    <div class="s-left">
+      <p class="s-number">05</p>
+      <div class="s-line"></div>
+    </div>
+    <div class="s-right">
+      <p class="s-label" id = "s5-label">Extrait de code dont je suis fier — 2/2</p>
+      <h1 class="s-title" id = "s5-title">Accélération<br>& friction</h1>
+      <div class="s-code-split">
+        <div class="s5-code-img">
+          <img src="images/acceleration.jpg" alt="Code acceleration" />
+          <p class="s-code-caption">Force constante + friction naturelle par impulsion</p>
+        </div>
+        <div class="s-code-turntable">
+          <canvas id="car-canvas" class="canvas-turntable"></canvas>
+          <p class="s-code-caption">Voiture en temps réel — Three.js</p>
+        </div>
+      </div>
+      <div class="s-message" style="margin-top: 20px;">
+        <span class="s-quote">"</span>
+        Au lieu d'accumuler la force, on applique une impulsion opposée au mouvement pour une friction réaliste.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6 - Conception visuelle -->
+<section>
+  <div class="s5-layout">
+    <div class="s-left">
+      <p class="s-number">06</p>
+      <div class="s-line"></div>
+    </div>
+    <div class="s-right">
+      <p class="s-label">Conception visuelle & approche créative</p>
+      <h1 class="s-title">Minimaliste,<br>low poly.</h1>
+      <div class="s-code-split">
+        <div class="s-code-img">
+          <img src="images/moodboard.jpg" alt="Moodboard inspiration" />
+          <p class="s-code-caption">Références visuelles — jeux et environnements low poly</p>
+        </div>
+        <div class="s6-reasons">
+          <p class="s-body">Inspiré de jeux et portfolios 3D colorés, j'ai choisi un style low poly pour trois raisons :</p>
+          <div class="s6-reason">
+            <span class="s6-icon">⚡</span>
+            <p>Efficace pour la <strong>performance</strong> — moins de polygones, meilleur framerate</p>
+          </div>
+          <div class="s6-reason">
+            <span class="s6-icon">⌚</span>
+            <p>Économise du temps en <strong>modélisation</strong> pour me concentrer sur le code</p>
+          </div>
+          <div class="s6-reason">
+            <span class="s6-icon">💡</span>
+            <p>Esthétique <strong>intuitive</strong> et immédiatement lisible pour l'utilisateur</p>
+          </div>
+          <div class="s-tags" style="margin-top: 20px;">
+            <span class="s6-tag">Low poly</span>
+            <span class="s6-tag">Coloré</span>
+            <span class="s6-tag">Performant</span>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7 - Réflexion personnelle -->
+<section>
+  <div class="s-layout">
+    <div class="s-left">
+      <p class="s-number">07</p>
+      <div class="s-line"></div>
+    </div>
+    <div class="s-right">
+      <p class="s-label">Réflexion personnelle</p>
+      <h1 class="s-title">Ce que j'ai<br>appris.</h1>
+      <div class="s-code-split">
+
+        <div class="s7-col">
+          <p class="s7-col-title">Apprentissage</p>
+          <div class="s4-item">
+            <span class="s4-num">+</span>
+            <div>
+              <p class="s4-problem">Autonomie technique</p>
+              <p class="s4-solution">Documentation, débogage avancé, recherche indépendante</p>
+            </div>
+          </div>
+          <div class="s4-item">
+            <span class="s4-num">+</span>
+            <div>
+              <p class="s4-problem">Persévérance</p>
+              <p class="s4-solution">Résolution de problèmes complexes sans aide directe</p>
+            </div>
+          </div>
+          <div class="s4-item">
+            <span class="s4-num">△</span>
+            <div>
+              <p class="s4-problem">À améliorer</p>
+              <p class="s4-solution">Optimisation du code et planification initiale plus structurée</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="s7-col">
+          <p class="s7-col-title">Bilan TIM</p>
+          <div class="s4-item">
+            <span class="s4-num">♥</span>
+            <div>
+              <p class="s4-problem">Ce que j'ai le plus aimé</p>
+              <p class="s4-solution">La 3D, l'interactivité et la programmation créative</p>
+            </div>
+          </div>
+          <div class="s4-item">
+            <span class="s4-num">→</span>
+            <div>
+              <p class="s4-problem">Ce que je veux approfondir</p>
+              <p class="s4-solution">Les shaders, l'optimisation WebGL et la physique avancée</p>
+            </div>
+          </div>
+          <div class="s4-item">
+            <span class="s4-num">◎</span>
+            <div>
+              <p class="s4-problem">Orientation future</p>
+              <p class="s4-solution">Jeu vidéo · Web interactif · Expérience immersive</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- SECTION 8 - Questions -->
+<section>
+  <div class="s-layout">
+    <div class="s-left">
+      <p class="s-number">08</p>
+      <div class="s-line"></div>
+    </div>
+    <div class="s-right">
+      <p class="s-label">Discussion</p>
+      <h1 class="s-title" style="font-size: 120px !important; letter-spacing: -6px !important;">Questions</h1>
+      <p class="s-body">Merci pour votre attention.</p>
+    </div>
+  </div>
+</section>
+<section>
+  
+         <div class = "centre">
+            <button class = 'close-btn' id='enter-portfolio'>Entrer dans le portfolio</button>
+         </div>
+          
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO 3D -->
+  <div id="portfolio" style="display:none;">
+    <div id="root"></div>
+    <div id="info">
+      <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> physics - 
+      <a href="https://github.com/dimforge/rapier.js" target="_blank">rapier</a> vehicle controller
+    </div>
+    
+    <div id="instructions-popup" class="popup hidden">
+      <div class="popup-content">
+        <h2>BIENVENUE DANS MON PORTFOLIO 3D</h2>
+        <div class="instructions-list">
+            <p>Vous avez maintenant l'opportunité de découvrir mes projets et mon portfolio dans un monde 3D intéractif! Vous devez simplement aller tout droit!</p>
+            <h3>Contrôles</h3>  
+            <p><strong>WASD ou flèches </strong> Conduire la voiture</p>
+            <p><strong>Espace </strong> Freiner</p>
+            <p><strong>R:</strong> Redémarrer le véhicule</p>
+            <p><strong>C:</strong> Changement de caméra</p>
+        </div>
+        <button id="close-popup" class="close-btn">FERMER</button>
+      </div>
+    </div>
+
+    <div id="tableau-popup" class="popup hidden">
+      <div class="popup-content tableau-content">
+        <h2 id="tableau-title">Titre du Projet</h2>
+        <div class="tableau-description" id="tableau-description">
+          <p>Description du projet...</p>
+        </div>
+        <div class="tableau-link-container">
+          <a href="#" id="tableau-link" target="_blank" class="tableau-link">Voir le projet</a>
+        </div>
+        <button id="close-tableau-popup" class="close-btn">FERMER</button>
+      </div>
+    </div>
+
+    <div id="signe-popup" class="popup hidden">
+      <div class="popup-content">
+        <h2>Bienvenue à mon collège!</h2>
+        <div class="instructions-list">
+          <p>Pour rentrer dans l'école, passez par le <strong>garage</strong> du bâtiment.</p>
+          <p>Une fois à l'intérieur, cliquez sur le <strong>bouton rouge</strong> pour afficher mes projets et mes liens professionnels.</p>
+          <p>Cliquez sur un <strong>projet</strong> pour voir une courte description avec un lien qui vous amène vers le projet.</p>
+          <p>En sortant de l'école, vous trouverez un <strong>jeu de bowling</strong>. Il n'y a pas de règles — foncez sur les quilles si vous voulez! 🤣</p>
+        </div>
+        <button id="close-signe-popup" class="close-btn">FERMER</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+  <script type="module" src="/src/presentation.js"></script>
+</body>
+</html>
