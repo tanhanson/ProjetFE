@@ -32,7 +32,7 @@ function toggleCameraMode() {
         // Passer en mode caméra libre
         freeCameraMode = true;
         controls.enabled = true;
-        if (car) {
+        if (car && car.getPosition) {
             controls.target.copy(car.getPosition());
         }
         controls.update();
@@ -42,7 +42,7 @@ function toggleCameraMode() {
         controls.enabled = false;
         
         // Alterner entre les sous-modes de caméra voiture
-        if (carCamera) {
+        if (carCamera && carCamera.toggleMode) {
             cameraSubMode = carCamera.toggleMode();
         }
     }
@@ -101,7 +101,11 @@ async function init() {
     
     // Statistiques de performance
     stats = new Stats();
-    document.body.appendChild(stats.dom);
+    if (document && document.body) {
+        document.body.appendChild(stats.dom);
+    } else {
+        console.warn('document.body not available, stats widget not added');
+    }
     
     // Physique
     physics = await RapierPhysics();
@@ -118,13 +122,21 @@ async function init() {
         spawnForest(50, scene, physics);
     });
     
-    // Création de la voiture
-    car = new Car(scene, physics);
-    car.create();
-    car.setupControls();
-    
-    // Caméra qui suit la voiture
-    carCamera = new CarCamera(camera, car, controls);
+    // Création de la voiture - avec vérification que la physique est prête
+    if (physics && physics.world && physics.addMesh) {
+        car = new Car(scene, physics);
+        car.create();
+        
+        if (car.chassis && car.vehicleController) {
+            car.setupControls();
+            // Caméra qui suit la voiture
+            carCamera = new CarCamera(camera, car, controls);
+        } else {
+            console.error('Car creation failed - chassis or vehicleController not initialized');
+        }
+    } else {
+        console.error('Physics world not properly initialized');
+    }
     
     // Écouteur de redimensionnement de fenêtre
     window.addEventListener('resize', onWindowResize);
@@ -167,18 +179,26 @@ function animate() {
     requestAnimationFrame(animate);
     
     // Mise à jour de la voiture
-    if (car) {
-        updateBowling(car.getPosition());
-        car.updateControl();
-        if (car.vehicleController) {
-            car.vehicleController.updateVehicle(1 / 60);
-            car.updateWheels();
+    if (car && car.getPosition && car.updateControl) {
+        try {
+            updateBowling(car.getPosition());
+            car.updateControl();
+            if (car.vehicleController) {
+                car.vehicleController.updateVehicle(1 / 60);
+                car.updateWheels();
+            }
+        } catch (error) {
+            console.error('Error in car update:', error);
         }
     }
     
     // Mise à jour de la caméra — uniquement en mode voiture
-    if (!freeCameraMode && carCamera) {
-        carCamera.update();
+    if (!freeCameraMode && carCamera && carCamera.update) {
+        try {
+            carCamera.update();
+        } catch (error) {
+            console.error('Error in camera update:', error);
+        }
     }
     
     // Mise à jour du curseur au survol des objets interactifs

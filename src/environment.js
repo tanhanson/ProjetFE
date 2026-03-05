@@ -468,7 +468,9 @@ export function updateHoverCursor(raycaster, camera, mouse) {
         if (boutonIntersects.length > 0) hovering = true;
     }
     
-    document.body.style.cursor = hovering ? 'pointer' : 'default';
+    if (document && document.body && document.body.style) {
+        document.body.style.cursor = hovering ? 'pointer' : 'default';
+    }
 }
 
 /**

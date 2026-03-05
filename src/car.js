@@ -41,9 +41,25 @@ export class Car {
         chassisMesh.position.set(0, 1, 60);
         this.scene.add(chassisMesh);
 
+        if (!this.physics || !this.physics.addMesh) {
+            console.error('Physics engine not initialized properly');
+            return this;
+        }
+
         this.physics.addMesh(chassisMesh, 600, 0.8); // La valeur 600 est le poid de la voiture
+        
+        if (!chassisMesh.userData?.physics?.body) {
+            console.error('Failed to create physics body for chassis');
+            return this;
+        }
+        
         this.chassis = chassisMesh.userData.physics.body;
         this.car = chassisMesh;
+
+        if (!this.physics.world || !this.physics.world.createVehicleController) {
+            console.error('Physics world not initialized properly');
+            return this;
+        }
 
         this.vehicleController = this.physics.world.createVehicleController(this.chassis);
 
@@ -137,24 +153,28 @@ export class Car {
      * car.updateWheels();
      */
     updateWheels() {
-        if (!this.vehicleController) return;
+        if (!this.vehicleController || !this.chassis) return;
 
-        const wheelSteeringQuat = new THREE.Quaternion();
-        const wheelRotationQuat = new THREE.Quaternion();
-        const up = new THREE.Vector3(0, 1, 0);
+        try {
+            const wheelSteeringQuat = new THREE.Quaternion();
+            const wheelRotationQuat = new THREE.Quaternion();
+            const up = new THREE.Vector3(0, 1, 0);
 
-        this.wheels.forEach((wheel, index) => {
-            const wheelAxleCs = this.vehicleController.wheelAxleCs(index);
-            const connection = this.vehicleController.wheelChassisConnectionPointCs(index).y || 0;
-            const suspension = this.vehicleController.wheelSuspensionLength(index) || 0;
-            const steering = this.vehicleController.wheelSteering(index) || 0;
-            const rotationRad = this.vehicleController.wheelRotation(index) || 0;
+            this.wheels.forEach((wheel, index) => {
+                const wheelAxleCs = this.vehicleController.wheelAxleCs(index);
+                const connection = this.vehicleController.wheelChassisConnectionPointCs(index).y || 0;
+                const suspension = this.vehicleController.wheelSuspensionLength(index) || 0;
+                const steering = this.vehicleController.wheelSteering(index) || 0;
+                const rotationRad = this.vehicleController.wheelRotation(index) || 0;
 
-            wheel.position.y = connection - suspension;
-            wheelSteeringQuat.setFromAxisAngle(up, steering);
-            wheelRotationQuat.setFromAxisAngle(wheelAxleCs, rotationRad);
-            wheel.quaternion.multiplyQuaternions(wheelSteeringQuat, wheelRotationQuat);
-        });
+                wheel.position.y = connection - suspension;
+                wheelSteeringQuat.setFromAxisAngle(up, steering);
+                wheelRotationQuat.setFromAxisAngle(wheelAxleCs, rotationRad);
+                wheel.quaternion.multiplyQuaternions(wheelSteeringQuat, wheelRotationQuat);
+            });
+        } catch (error) {
+            console.error('Error updating wheels:', error);
+        }
     }
 
     /**
